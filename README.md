@@ -1,72 +1,117 @@
 # ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-## Template Instructions
+## Air Pollution Forecasting & Analysis Project
 
-Welcome,
+The Air Pollution Forecasting & Analysis Project applies data-driven methods to understand and predict air quality across the United States. Using publicly available environmental and meteorological datasets, the project explores how pollutants such as nitrogen dioxide (NO₂), ozone (O₃), and sulphur dioxide (SO2) vary over time and between regions.
 
-This is the Code Institute student template for the Data Analytics capstone project. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+By integrating geographic coordinates, weather conditions, populations and pollutant measurements, the project identifies key relationships influencing daily air quality. Statistical analysis, data visualization, and predictive modeling are used to uncover temporal patterns, assess spatial trends, and estimate future pollutant levels.
 
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
+The overall goal is to build an interpretable framework that supports informed environmental decision-making and highlights pollution hotspots. Through statistical analysis, machine learning, and clear data visualization, the project delivers interpretable forecasts and insights that can support citizens, health professionals, and policymakers with data-driven forecasts, that aims to reduce exposure risks, guide preventive measures, and contribute to healthier, more resilient communities.
 
-## How to use this repo
+## Dataset Content
 
-1. Use this template to create your GitHub project repo. Click the **Use this template** button, then click **Create a new repository**.
+- Source: https://www.kaggle.com/datasets/sogun3/uspollution/data?select=pollution_us_2000_2016.csv
+- Timeframe: 2000–2016 (filtered to 2011–2016)
+- Geography: United States (by city/county/state)
+- Features:
+   •	Pollutants: NO₂, O₃, SO₂, CO (daily values + AQI)
+   •	Location: State, county, city, site number
+   •	Population (added from external dataset)
+   •  Weather (Installed Meteostat and libraries in VS Code)
+- Note: Raw dataset exceeds 300MB and is excluded from the repo (see .gitignore).
+________________________________________
+ 
+## Business Requirements
 
-1. Copy the URL of your repository to your clipboard.
+- This project aims to support public health and environmental decision-making by answering:
+   •	Which locations consistently exceed safe pollution levels?
+   •	How do weather conditions and population affect air quality?
+   •	Can we forecast AQI to enable preventative measures (e.g., air quality alerts)?
+________________________________________
+ 
+## Hypotheses & Validation
 
-1. In VS Code, select **File** -> **Open Folder**.
+- Hypothesis & Validation Method:
+  - H1: Higher population areas have worse air quality	
+  - Validation: Correlation analysis, scatter plots (population vs AQI)
+  
+  - H2: Weather conditions (e.g., wind speed) affect pollutant levels	
+  - Validation: Multivariate regression
+  
+  - H3: Pollution levels follow seasonal patterns	
+  - Validation: Time series decomposition
+  
+  - H4: Forecasting models can predict pollutant levels accurately 1 week in advance	
+  - Validation: RMSE/MAE from model validation
 
-1. Select your `vscode-projects` folder, then click the **Select Folder** button on Windows, or the **Open** button on Mac.
+## Project Plan
 
-1. From the top menu in VS Code, select **Terminal** > **New Terminal** to open the terminal.
+1.	Data Cleaning
+   • Handle missing values (e.g., AQI NaNs)
+   • Optimize data types (e.g., downcasting floats and removing whitespaces)
 
-1. In the terminal, type `git clone` followed by the URL of your GitHub repository. Then hit **Enter**. This command will download all the files in your GitHub repository into your vscode-projects folder.
+2.	Feature Engineering
+   • Add population from US Census, mapped from city level data first, then county levl if city is not application or available 
+   • Weather data: maximum temperature (tmax), wind speed (wspd) and precipitation (prcp) 
 
-1. In VS Code, select **File** > **Open Folder** again.
+3.	EDA
+   • Trends, heatmaps, correlations
 
-1. This time, navigate to and select the folder for the project you just downloaded. Then, click **Select Folder**.
+4.	Modeling
+   • Baseline (ARIMA) and advanced (XGBoost/LSTM) models
 
-1. A virtual environment is necessary when working with Python projects to ensure each project's dependencies are kept separate from each other. You need to create your virtual environment, also called a venv, and then ensure that it is activated any time you return to your workspace.
-Click the gear icon in the lower left-hand corner of the screen to open the Manage menu and select **Command Palette** to open the VS Code command palette.
+5.	Dashboard
+   • Interactive dashboard with filters by pollutant, location, and date
 
-1. In the command palette, type: *create environment* and select **Python: Create Environment…**
+6.	Documentation & Ethical Review
+   • ?????????
 
-1. Choose **Venv** from the dropdown list.
+________________________________________
+5. Mapping Business Requirements to Visuals
 
-1. Choose the Python version you installed earlier. Currently, we recommend Python 3.12.8
+| Requirement	                        |                         Visual                     |
+---------------------------------------------------------------------------------------------
+| Identify high-risk areas	            |             Choropleth map of AQI by region        |
+| Compare pollutants over time	      |             Line charts with rolling averages      |
+| Understand weather impact	         |             Scatter plots & regression overlays    | 
+| Detect seasonal trends	            |             Time series decomposition              | 
+| Forecast accuracy	                  |             Prediction vs actual plots             |
 
-1. **DO NOT** click the box next to `requirements.txt`, as you need to do more steps before you can install your dependencies. Click **OK**.
 
-1. You will see a `.venv` folder appear in the file explorer pane to show that the virtual environment has been created.
+6. Analysis Techniques Used
+  • EDA: Heatmaps, boxplots, trend lines
+  • Statistical Tests: Pearson correlation, ADF test
+  • Time Series Modeling: ARIMA, SARIMA
+  • Machine Learning: Random Forest, XGBoost
+  • Feature Engineering: Weather and Population Data
+  • Dashboarding: Streamlit (planned)
+________________________________________
+ 
 
-1. **Important**: Note that the `.venv` folder is in the `.gitignore` file so that Git won't track it.
+7. Ethical Considerations
+  • Bias: Ensure fair analysis across rural and urban areas
+  • Transparency: Clearly communicate data limitations and assumptions
+  • Privacy: No personal data used — only aggregate, public data
+  • Policy Sensitivity: Avoid drawing misleading conclusions about causation without strong evidence
 
-1. Return to the terminal by clicking on the TERMINAL tab, or click on the **Terminal** menu and choose **New Terminal** if no terminal is currently open.
 
-1. In the terminal, use the command below to install your dependencies. This may take several minutes.
+8. Dashboard Design
 
- ```console
- pip3 install -r requirements.txt
- ```
+- Tool: Power BI
+- Features:
+  • Select pollutant, city, and date range
+  • View pollution trends and forecasts
+  • Toggle weather overlays
+  • Map of pollution hotspots
+  • Downloadable charts for reports
 
-1. Open the `jupyter_notebooks` directory, and click on the notebook you want to open.
+- Tool: Streamlit
+- Features:
+  • Select pollutant, city, and date range
+  • View pollution trends and forecasts
+  • Toggle weather overlays
+  • Map of pollution hotspots
+  • Downloadable charts for reports
+- Status: In development 
 
-1. Click the **kernel** button and choose **Python Environments**.
 
-Note that the kernel says `Python 3.12.8` as it inherits from the venv, so it will be Python-3.12.8 if that is what is installed on your PC. To confirm this, you can use the command below in a notebook code cell.
-
-```console
-! python --version
-```
-
-## Deployment Reminders
-
-* Set the `.python-version` Python version to a [Heroku-22](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version that closest matches what you used in this project.
-* The project can be deployed to Heroku using the following steps.
-
-1. Log in to Heroku and create an App
-2. At the **Deploy** tab, select **GitHub** as the deployment method.
-3. Select your repository name and click **Search**. Once it is found, click **Connect**.
-4. Select the branch you want to deploy, then click **Deploy Branch**.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button **Open App** at the top of the page to access your App.
-6. If the slug size is too large, then add large files not required for the app to the `.slugignore` file.
