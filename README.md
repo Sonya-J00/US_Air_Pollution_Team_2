@@ -64,7 +64,8 @@ ________________________________________
    - Interactive dashboard with filters by pollutant, location, and date
 
 6. Documentation & Ethical Review
-   - ?????????
+   - All data sources, transformations, and modeling steps are documented to ensure reproducibility and accountability.
+   - Ethical Use of Data: Only publicly available, non-personal data was used, with care taken to avoid bias in urban vs. rural comparisons.
 
 ________________________________________
 # Mapping Business Requirements to Visuals
@@ -85,7 +86,7 @@ ________________________________________
   - Time Series Modeling: ARIMA, SARIMA
   - Machine Learning: Random Forest, XGBoost
   - Feature Engineering: Weather and Population Data
-  - Dashboarding: Streamlit (planned)
+  - Dashboarding: Power BI
 ________________________________________
  
 
@@ -107,13 +108,37 @@ ________________________________________
   - Map of pollution hotspots
   - Downloadable charts for reports
 
-- Tool: Streamlit
-- Features:
-  - Select pollutant, city, and date range
-  - View pollution trends and forecasts
-  - Toggle weather overlays
-  - Map of pollution hotspots
-  - Downloadable charts for reports
-- Status: In development 
+
+# Unfixed Bugs/Issues
+
+- At the start of the project a member of the team encountered a commit issue with their ETL to the main Repository in Github, Facilitators from Code Institute had trouble resolving the issue or finding the root cause(which could've been the team member mistakely creating too many branches before commiting), an afternoon was spent trying to resolve the issue but to no avail, so we had to delete the work and start again.     
 
 
+# Key Takeaways
+
+- Urban areas showed consistently higher AQI levels compared to rural or suburban regions.
+
+- O3 levels peaked in warmer temperatures and low wind speeds were linked to higher pollution, particularly in summer months.
+
+- AQI displayed clear seasonal patterns, with pollution peaking mid-year.
+
+- Gradient Boosting was the best-performing model, with an MAE of ~10 — capturing general trends well, though struggling with sharp pollution spikes.
+
+- Weather features like wind speed and precipitation added meaningful predictive power to the model.
+
+- Power BI visuals (e.g. pollutant breakdown by region, weather bins, AQI quality categories) made complex data easier to explore and explain.
+
+
+# Conclusion
+
+This project combines pollution, weather, and population data to better understand what drives changes in air quality across the U.S. After cleaning and integrating multiple datasets, I explored patterns like how urban areas, high temperatures, and low wind speeds tend to coincide with higher pollution levels. By engineering features and training forecasting models, I was able to predict AQI values with reasonable accuracy — especially useful for early interventions.
+
+The Power BI dashboard brings the data to life, letting users interact with pollutant trends, weather conditions, and urbanization levels in a clear and accessible way. While there’s still room for fine-tuning the predictive models, this framework lays a solid foundation for future work in public health planning, environmental monitoring, and data-driven policymaking.
+
+
+# Credits
+
+- Kaggle from whence we acquired our Data's origin.
+- US Population Census from https://www.census.gov/
+- Meteostat library(Python) for Weather Data
+- ChatGPT (Chatty) helped with coding, creating dashboards in Power BI.  
